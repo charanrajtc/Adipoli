@@ -30,10 +30,11 @@
         $(this).one('load', function() {
             // do stuff
 
+        	$(this).addClass("adipoli-wrapperd");
             $(this).wrap(function(){
                 return '<div class="adipoli-wrapper '+$(this).attr('class')+'" style="width:'+$(this).width()+'px; height:'+$(this).height()+'px;"/>';
             });
-            $(this).parent().append('<div class="adipoli-before '+$(this).attr('class')+'" style="display:none;width:'+$(this).width()+'px; height:'+$(this).height()+'px;"><img src="'+$(this).attr('src')+'"/></div>');
+            $(this).parent().append('<div class="adipoli-before '+$(this).attr('class')+'" style="display:none;width:'+$(this).width()+'px; height:'+$(this).height()+'px;"><img class="adipoli-wrapperd" src="'+$(this).attr('src')+'"/></div>');
             $(this).parent().append('<div class="adipoli-after '+$(this).attr('class')+'" style="display:none;width:'+$(this).width()+'px; height:'+$(this).height()+'px;"></div>');
             //set start effect
             if(settings.startEffect=="transparent")
@@ -322,8 +323,14 @@
                 $(this).children('.adipoli-after').html('').hide();
             });
 
+            
+            
         }).each(function() {
-            if(this.complete) $(this).load();
+        	if(this.complete) 
+            {
+        		if(!$(this).hasClass("adipoli-wrapperd"))
+            	$(this).load();
+            }
         });
         //});
         return $(this);
